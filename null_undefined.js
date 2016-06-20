@@ -16,6 +16,16 @@ console.log(typeof(b));
 // console.log(b.toString());
 
 
+console.log("null === undefined: ", null === undefined);
+console.log("null == undefined: ", null == undefined);
+console.log("null === null: ", null === null);
+
+
+// console.log(null = 'value'); // ReferenceError
+console.log(undefined = 'value');
+
+
+
 
 var c = [undefined, undefined, undefined];
 console.log(c.length);
