@@ -20,6 +20,29 @@ console.log("null === undefined: ", null === undefined);
 console.log("null == undefined: ", null == undefined);
 console.log("null === null: ", null === null);
 
+console.log(null == "");
+console.log("");
+console.log(typeof(""));
+
+console.log(null == " ");
+console.log(" ");
+console.log(typeof(" "));
+
+console.log(null == 0);
+console.log(0);
+console.log(typeof(0));
+
+console.log(null == false);
+console.log(false);
+console.log(typeof(false));
+
+
+// Uncaught TypeError  null is an object
+// console.log(null.valueOf());
+console.log("".valueOf());
+console.log(false.valueOf());
+// console.log(undefined.valueOf()); // Uncaught TypeError
+
 
 // console.log(null = 'value'); // ReferenceError
 console.log(undefined = 'value');
