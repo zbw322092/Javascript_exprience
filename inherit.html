@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript Inherit</title>
+</head>
+
+<body>
+  <script>
+  var o = {
+    x: 1
+  };
+
+  var s = Object.create(o);
+  console.log(s);
+
+  s.x = 100;
+  s.y = 1000;
+	console.log(s);
+	console.log(s.x);
+
+
+	console.log(o.isPrototypeOf(s));
+
+	var p = Object.create(s);
+	p.z = 666;
+	console.log(p);
+	// 原型链一层层往上找，知道找到第一个x属性
+	console.log(p.x);
+
+
+
+
+
+
+	var oo = {
+		x: 1,
+		y: [1, 2, 3],
+		z: {
+			zz: 4
+		},
+		f: function() { return "ok" },
+		s: "It is a string"
+	};
+
+	console.log(oo);
+
+	var ss = Object.create(oo);
+	console.log(ss);
+
+	ss.x = 10;
+	console.log(ss);
+
+	console.log(ss.y);
+	console.log(ss.y[0]);
+
+	ss.y[0] = 66;
+	console.log(ss);
+	console.log(oo);
+	console.log(ss.y[0]);
+
+	ss.z.zz = 44;
+	console.log(ss);
+	console.log(oo);
+	console.log(ss.z.zz);
+
+	ss.z = {
+		newZ: "it is a new z"
+	};
+
+	console.log(ss);
+
+	delete ss.z;
+	console.log(ss);
+
+
+  </script>
+</body>
+
+</html>
