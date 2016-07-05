@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript deep copy vs shallow copy</title>
+</head>
+
+<body>
+  <script>
+ 	var a = [1,2,3,4,5];
+ 	var b = a.slice(0,3);
+ 	console.log('a:', a, 'b:', b);
+
+ 	b[0] = 100;
+ 	console.log('a:', a, 'b:', b);
+
+ 	var aa = [[1,2],[3,4],[5,6]];
+ 	var bb = aa;
+ 	console.log('aa:', aa, 'bb:', bb);
+
+ 	console.log(bb[0]);
+ 	bb[0] = [666];
+ 	console.log(bb[0]);
+
+ 	console.log('aa:', aa, 'bb:', bb); 
+ 	// 在这里aa[1]也变成了[666]，也就是说bb的变化也反应到了aa里面
+ 	
+ 	console.log(aa[0] === bb[0]); // true
+ 	console.log(aa[1] === bb[1]); // true
+
+
+ 	
+
+  </script>
+</body>
+
+</html>
