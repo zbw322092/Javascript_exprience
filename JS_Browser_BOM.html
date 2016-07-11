@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript JS Browser BOM</title>
+</head>
+
+<body>
+	<input type="button" onclick="loadNewDocument()" value="click it"><br>
+
+	<input type="button" onclick="back()" value="back"><br>
+	<input type="button" onclick="forward()" value="forward"><br>
+
+	<input type="button" onclick="alertTesting()" value="alert"><br>
+	<input type="button" onclick="confirmTesting()" value="confirm"><br>
+	<p id='confirmResult'></p><br>
+	<input type="button" onclick="PromptTesting()" value="Prompt"><br>
+	<p id="inputResult"></p><br><br>
+
+	<input type="button" onclick="myTimeout = window.setTimeout(timeoutFunction, 3000)" value="Start Timeout"><br>
+	<input type="button" onclick="clearTimeout(myTimeout)" value="Stop Timeout"><br>
+
+	<input type="button" onclick="myInterval = window.setInterval(intervalFunction, 1000)" value="Start Interval"><br>
+	<p id='currentTime'></p>
+	<input type="button" onclick="clearInterval(myInterval)" value="Stop Interval"><br>
+
+	
+  <script>
+  	console.log('window height is: ' + window.innerHeight + ' ' +
+  		"window width is: " + window.innerWidth);
+
+
+
+
+  	console.log('screen width: ' + window.screen.width + ' ' +
+  		'screen height: ' + window.screen.height);
+
+  	console.log('Available Screen Width: ' + window.screen.availWidth + ' '
+  		+ 'Available Screen Height: '+ window.screen.availHeight);
+
+  	console.log('Screen Color Depth: ' + window.screen.colorDepth);
+
+  	console.log('Screen Pixel Depth: ' + window.screen.pixelDepth);
+
+
+
+
+  console.log('Page location is: ' + window.location.href);
+
+	console.log('Page hostname is: ' + window.location.hostname);  	
+
+	console.log('Page path is: ' + window.location.pathname);  	
+
+	console.log('Page protocol is: ' + window.location.protocol);
+
+	function loadNewDocument() {
+		window.location.assign('http://www.w3schools.com');
+	}	
+
+
+
+	function back() {
+		window.history.back();
+	}
+
+	function forward() {
+		window.history.forward();
+	}
+
+
+	console.log('Cookies Enabled is: ', window.navigator.cookieEnabled);
+
+	// IE11, Chrome, Firefox, and Safari return appName "Netscape".
+	console.log('Name is: ', window.navigator.appName);	
+
+	// Chrome, Firefox, IE, Safari, and Opera all return appCodeName "Mozilla".
+	console.log('Code name is: ', window.navigator.appCodeName);	
+
+	console.log('The Browser Engine is: ', window.navigator.product);	
+
+	console.log('The Browser Version is: ', window.navigator.appVersion);	
+
+	console.log('The Browser Version is: ', window.navigator.userAgent);	
+
+	console.log('The Browser Platform is: ', window.navigator.platform); // MacIntel
+
+	console.log('The Browser Language is: ', window.navigator.language); // en-US
+
+	console.log('Is Java Enabled: ', window.navigator.javaEnabled());	
+
+
+
+
+	function alertTesting() {
+		window.alert('That is Ok');
+	}
+
+	// 之前将函数名也命名为confirm, 结果报错 Uncaught RangeError: Maximum call stack size exceeded
+	// 注意confirm box点击ok和cancel之后会分别返回true和false
+	function confirmTesting() {
+		var x;
+		if (window.confirm('It is a confirm box') == true) {
+			x = 'You click OK';
+		} else {
+			x = 'You click Cancel';
+		}
+		document.getElementById('confirmResult').innerHTML = x;
+
+	}
+
+	// If the user clicks "OK" the box returns the input value. If the user clicks "Cancel" the box returns null.
+	function PromptTesting() {
+		var x;
+		var person = window.prompt('Enter your name', 'Harry Potter');
+		if (person) {
+			x = 'Your name is ' + person;
+		} else {
+			x = 'You do not enter name';
+		}
+		document.getElementById('inputResult').innerHTML = x;
+	}
+
+
+
+	function timeoutFunction() {
+		window.alert('It is time to show alert');
+	}
+
+
+	function intervalFunction() {
+		// 如果下面两行语句颠倒位置，那么显示的一会都会是undefined
+		var t = new Date().toLocaleTimeString();
+		document.getElementById('currentTime').innerHTML = t;
+	}
+	
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
