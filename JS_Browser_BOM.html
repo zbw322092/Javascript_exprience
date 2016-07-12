@@ -133,6 +133,14 @@
 		document.getElementById('currentTime').innerHTML = t;
 	}
 	
+
+	// console出的结果中上面定义的function都是以window这个大object里key-value pair
+	// 的形式存在的
+	console.log('window: ', window);
+	console.log('window.intervalFunction: ', window.intervalFunction);
+	console.log('window.intervalFunction: ', window.intervalFunction());
+	var windowTesting = 'It is ok';
+	console.log('windowTesting: ', window.windowTesting);
   </script>
 </body>
 
