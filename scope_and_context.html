@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript JS Browser BOM</title>
+</head>
+
+<body>
+	
+  <script>
+  	var obj = {
+  		foo: function() {
+  			// alert(this === obj);
+  			console.log(this);
+  		}
+  	};
+
+  	obj.foo();
+
+  	
+  	(function foo() {
+  		console.log(this)
+  	}()); // window object
+
+  	// 函数自引用的写法下定义出来的不是一个可以被调用的函数。报错Uncaught ReferenceError: foo is not defined
+  	// foo(); 
+  	
+  	function foo() {
+  		console.log(this);
+  	}
+  	foo(); // window object
+  	new foo(); // foo
+
+
+  	function first() {
+  		console.log('It is a scope chain testing4');
+  		second();
+  		function second() {
+  			console.log('It is a scope chain testing3');
+  			third();
+  			function third() {
+  				console.log('It is a scope chain testing2');
+  				fourth();
+  				function fourth() {
+  					console.log('It is a scope chain testing1');
+  				}
+  			}
+  		}
+  	}
+  	// 执行结果是4,3,2,1
+  	first();
+
+  	function first2() {
+  		second2();
+  		console.log('It is a scope chain testing4');
+  		function second2() {
+  			third2();
+  			console.log('It is a scope chain testing3');
+  			function third2() {
+  				fourth2();
+  				console.log('It is a scope chain testing2');
+  				function fourth2() {
+  					console.log('It is a scope chain testing1');
+  				}
+  			}
+  		}
+  	}
+  	// 执行结果是1,2,3,4
+  	first2();
+
+
+  	function foo2() {
+  		var localVariable = 'private variable';
+  		return function bar() {
+  			return localVariable;
+  		}
+  	}
+
+  	var getLocalVariable = foo2();
+  	console.log(getLocalVariable());
+
+
+
+  	var Module = (function() {
+  		var privateProperty = 'foo';
+
+  		function privateMethod(args) {
+  			console.log("it is closures testing")
+  		}
+
+  		return {
+  			publicProperty: '',
+  			publicMethod: function(args) {
+  				console.log("it is closures testing2")  				
+  			},
+  			privilegedMethod: function(args) {
+  				return privateMethod(args);
+  			}
+  		}
+  	})();
+
+  	Module.publicMethod();
+  	Module.privilegedMethod();
+
+
+
+  	var currentScope = 0;
+  	(function() {
+  		var currentScope = 1, one = 'scope1';
+  		console.log(currentScope);
+  		
+  		(function() {
+  			var currentScope = 2, two = 'scope2';
+  			console.log(currentScope);
+
+  			(function() {
+  				var currentScope = 3, three = 'scope3';
+  				console.log(currentScope);
+  				console.log(one + two + three);
+  			}());
+  		}());
+  	}());
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
