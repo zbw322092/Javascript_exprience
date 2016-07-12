@@ -126,6 +126,7 @@
 
 
 
+  	// ------------------------------------------------------------
   	// a basic closures
   	function showName(firstName, lastName) {
   		var nameIntro = "Your name is ";
@@ -224,6 +225,119 @@
 		console.log(createIdForActionCelebs2[0].id); // 100
 		console.log(createIdForActionCelebs2[1].id); // 101
 		console.log(createIdForActionCelebs2[2].id); // 102
+
+
+
+
+
+
+		
+		// ------------------------------------------------------------
+		// scope
+		var name = "Bowen";
+
+		function scopeTesting() {
+			console.log(name);
+		}
+		scopeTesting(); // Bowen
+
+		function scopeTesting2() {
+			name = "Hui"
+			console.log(name);
+		}
+		scopeTesting2(); // Hui
+
+		scopeTesting(); // Hui
+
+		// 解决问题的办法是在function中使用var，以防overwrite全局变量
+		function scopeTesting3() {
+			var name = "Bowen an Hui"
+		}
+		scopeTesting3();
+
+		scopeTesting(); // still hui
+
+
+
+		// 在函数中不使用var定义一个变量，在这里函数被调用之后，这个变量成为全局变量
+		function ageScope() {
+			age = 90;
+		}
+		// console.log(age); // not defined
+		ageScope();
+		console.log(age); // 90
+
+
+
+		for (var i = 1; i <= 10; i++) {
+			console.log(i);
+		};
+
+		// 上面for loop里面的i是全局变量
+		function aNumber() {
+			console.log(i);
+		}
+		aNumber(); // 11
+
+
+
+		// 从下面这个例子可以看出，setTimeout的this指向的是window而不是外层的myObj，
+		// setTimeout实际上是window.setTimeout()
+		var highValue = 200;
+		var constantVal = 2;
+		var myObj = {
+			highValue: 20,
+			constantVal: 5,
+			calculateIt: function() {
+				setTimeout(function() {
+					console.log(this.constantVal + ' ' + this.highValue);
+				}, 2000);
+			}
+		}
+
+		myObj.calculateIt(); // 2 200
+
+
+
+		// variable hoisting
+		function showName() {
+			console.log('First Name: ' + nameTesting); // First Name: undefined
+			var nameTesting = "Bowen";
+			console.log('Last Name: ' + nameTesting);
+		}
+		showName();
+
+
+		function showName2() {
+			console.log('First Name: ' + nameTesting); // First Name: undefined
+			// var name = "Bowen";
+			console.log('Last Name: ' + nameTesting);
+		}
+		// 报错 Uncaught ReferenceError: nameTesting is not defined, 这个和上面
+		// 的例子是不同的，上面的例子中变量是已经定义，但是没有初始化。
+		// showName2();
+		
+
+
+		var myHoisting;
+		function myHoisting() {
+			console.log('Rich');
+		}
+
+		console.log(myHoisting); 
+		// 显示的是function的内容。说明在hoisting中function的声明优先级是高于variable
+		// 的声明的。
+		
+
+		var myHoisting2 = "Richard";
+
+		function myHoisting2() {
+			console.log("Rich");
+		}
+
+		console.log(myHoisting2); // Richard
+
+		
   </script>
 </body>
 
