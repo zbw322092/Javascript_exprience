@@ -120,6 +120,110 @@
   			}());
   		}());
   	}());
+
+
+
+
+
+
+  	// a basic closures
+  	function showName(firstName, lastName) {
+  		var nameIntro = "Your name is ";
+
+  		function makeFullName() {
+  			return nameIntro + firstName + ' ' + lastName;
+  		}
+
+  		return makeFullName();
+  	}
+
+  	console.log(showName('Bowen', 'Zhong'));
+
+
+
+
+  	function celebrityName(firstName) {
+  		var nameIntro = "This celebrity is ";
+
+  		function lastName(theLastName) {
+  			return nameIntro + firstName + " " + theLastName;
+  		}
+  		return lastName;
+  	}
+
+  	// at this juncture, the celebrityName outer function has been returned
+  	var myName = celebrityName('Bowen');
+
+		console.log(myName('Zhong'));
+
+
+
+		function celebrityID() {
+			var celebrityID = 999;
+			return {
+				getID: function() {
+					return celebrityID;
+				},
+				setID: function(theNewID) {
+					celebrityID = theNewID;
+				}
+			}
+		}
+
+		var myID = celebrityID(); // outer function has returned at this juncture
+		console.log(myID.getID()); // 999
+		myID.setID(567);
+		console.log(myID.getID()); // 567
+
+
+
+		
+		function celebrityIDCreator(theCelebrities) {
+			var i;
+			var uniqueID = 100;
+			for (i = 0; i < theCelebrities.length; i++) {
+				theCelebrities[i]["id"] = function() {
+					console.log(i); // 注意这里i都已经变成了3
+					return uniqueID + i;
+				}
+			}
+
+			return theCelebrities;
+		}
+
+		var actionCelebs = [{name:"Stallone", id:0}, {name:"Cruise", id:0}, {name:"Willis", id:0}];
+
+		var createIdForActionCelebs = celebrityIDCreator(actionCelebs);
+		// 这里面return的数组里面的object，id是个还未执行的匿名函数，也就是上面定义的
+		// 匿名函数。
+		console.log(createIdForActionCelebs);
+		console.log(createIdForActionCelebs[0].id()); // 103
+		console.log(createIdForActionCelebs[1].id()); // 103
+		console.log(createIdForActionCelebs[2].id()); // 103
+
+
+		// 为了解决上面的问题，可以使用Immediately Invoked Function Expression
+		function celebrityIDCreator2(theCelebrities) {
+			var i;
+			var uniqueID = 100;
+			for(i = 0; i < theCelebrities.length; i++) {
+				theCelebrities[i]["id"] = function(j) {
+					return function() {
+						return uniqueID + j;
+					}()
+				}(i);
+			}
+
+			return theCelebrities;
+		}
+
+		var actionCelebs2 = [{name:"Stallone", id:0}, {name:"Cruise", id:0}, {name:"Willis", id:0}];		
+		var createIdForActionCelebs2 = celebrityIDCreator2(actionCelebs2);
+
+		console.log(createIdForActionCelebs2);
+		console.log(createIdForActionCelebs2[0].id); // 100
+		console.log(createIdForActionCelebs2[1].id); // 101
+		console.log(createIdForActionCelebs2[2].id); // 102
   </script>
 </body>
 
