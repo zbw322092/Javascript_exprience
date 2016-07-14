@@ -9,7 +9,30 @@
 
 	
   <script>
+  	// JavaScript’s Bind Allows Us to Set the this Value on Methods 
   	
+  	// Bind () Allows us to Borrow Methods
+
+  	// JavaScript’s Bind Allows Us to Curry a Function 
+  	function greet(gender, age, name) {
+  		var salutation = gender === "male" ? "Mr." : "Ms.";
+
+  		if (age > 25) {
+  			return "Hello," + salutation + name + ".";
+  		} else {
+  			return "Hey," + name + ".";
+  		}
+  	}
+
+  	var greetAnAdultMale = greet.bind(null, "male", 45);
+  	console.log(greetAnAdultMale());
+  	console.log(greetAnAdultMale("John"));
+
+  	var greetAYoungster = greet.bind(null, "", 16);
+  	console.log(greetAYoungster());
+
+  	console.log(greetAYoungster('Alex'));
+  	console.log(greetAYoungster('Waterloo'));
   </script>
 </body>
 
