@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript this</title>
+</head>
+
+<body>
+  <button>Click It</button>
+  <script type="text/javascript" src="script/jquery-3.0.0.min.js"></script>
+  <script>
+  var person = {
+    firstName: "Bowen",
+    lastName: "Zhong",
+    fullName: function() {
+      console.log(this); // 这里的this就是指代这个fucntion所在的object
+      console.log(this.firstName + " " + this.lastName); // Bowen Zhong
+      console.log(person.firstName + " " + person.lastName);
+    }
+  }
+
+  person.fullName();
+
+
+  $("button").click(function(event) {
+    console.log($(this).prop("name"));
+  });
+
+
+  (function() {
+    console.log(this);
+    return "It is ok";
+  })(); // window object
+
+
+
+  var firstName = 'Hui',
+    lastName = "Liu";
+
+  function showFullName() {
+    console.log(this.firstName + ' ' + this.lastName);
+  }
+
+  showFullName(); // Hui Liu
+  window.showFullName(); // Hui Liu
+  window.person.fullName();
+
+
+  // 通过使用其他的object，也就是说改变this指向的context，我们可以改变输出的结果。
+  var anotherPerson = {
+    firstName: 'Rohit',
+    lastName: 'Khan'
+  };
+  person.fullName.apply(anotherPerson); // 这个时候this指向了anotherPerson
+
+
+
+  var user = {
+    data: [{
+      name: 'T. Woods',
+      age: 37
+    }, {
+      name: 'P. Mickelson',
+      age: 43
+    }],
+    clickHandler: function(event) {
+      var randomNum = ((Math.random() * 2 | 0) + 1) - 1;
+
+      console.log(this); // 点击按钮的时候显示<button>Click It</button>
+      console.log(this.data[randomNum].name + " " + this.data[randomNum].age);
+    }
+  }
+
+  user.clickHandler(); // 这个时候显示的和下面点击按钮的时候不一样，这个时候显示的this是user这个object
+  // $("button").click(user.clickHandler); // Cannot read property '0' of undefined
+  $("button").click(user.clickHandler.bind(user));
+
+
+
+  // 下例中展示了在闭包中this不能指向外层的Object
+  var user2 = {
+    tournament: "The Masters",
+    data: [{
+      name: 'T. Woods',
+      age: 37
+    }, {
+      name: 'P. Mickelson',
+      age: 43
+    }],
+    clickHandler: function() {
+      console.log(this);
+      console.log(this.data);
+      this.data.forEach(function(person) {
+        console.log("inner this: ", this);
+        console.log(person.name + "is playing at" + this.tournament);
+      });
+    }
+  }
+
+  user2.clickHandler();
+
+
+  // fix the problem
+  var user3 = {
+    tournament: "The Masters",
+    data: [{
+      name: 'T. Woods',
+      age: 37
+    }, {
+      name: 'P. Mickelson',
+      age: 43
+    }],
+    clickHandler: function() {
+      console.log(this);
+      console.log(this.data);
+
+      var theUserObj = this;
+
+      this.data.forEach(function(person) {
+        console.log("inner this: ", this);
+        console.log(person.name + "is playing at" + theUserObj.tournament);
+      });
+    }
+  }
+
+  user3.clickHandler();
+
+
+  var data = [{
+    name: "Samantha",
+    age: 12
+  }, {
+    name: "Alexis",
+    age: 14
+  }];
+
+  var showUserData = user.clickHandler;
+  console.log(showUserData);
+  showUserData(); // 取的是全局data这个object
+
+  // fix the above problem
+  var showUserData2 = user.clickHandler.bind(user);
+  showUserData2();
+
+
+  var gameController = {
+    scores: [20, 34, 55, 46, 77],
+    avgScore: null,
+    players: [{
+      name: "Tommy",
+      playerID: 987,
+      age: 23
+    }, {
+      name: "Pau",
+      playerID: 87,
+      age: 33
+    }]
+  }
+
+  var appController = {
+    scores: [900, 845, 809, 950],
+    avgScore: null,
+    avg: function() {
+      var sumOfScores = this.scores.reduce(function(prev, cur, index, array){
+        return prev + cur;
+      });
+
+      this.avgScore = sumOfScores/this.scores.length;
+    }
+  }
+
+  gameController.avgScore = appController.avg();
+  console.log(gameController);
+  console.log(appController.avg());
+
+  // fix the above problem
+  appController.avg.apply(gameController, gameController.scores);
+  console.log(appController);
+  </script>
+</body>
+
+</html>
