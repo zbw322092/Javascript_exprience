@@ -33,6 +33,112 @@
 
   	console.log(greetAYoungster('Alex'));
   	console.log(greetAYoungster('Waterloo'));
+
+
+
+
+
+
+  	// apply and call
+  	var avgScore = "global avgScore";
+
+  	function avg(arrayOfScores) {
+  		var sumOfScores = arrayOfScores.reduce(
+  			function(prev, cur, index, array) {
+  				return prev + cur;
+  			}
+  		);
+
+  		// 这时的this指向的是全局
+  		this.avgScore = sumOfScores / arrayOfScores.length;
+  	}
+
+  	var gameController = {
+  		scores: [20, 34, 55, 46, 77],
+  		avgScore: null
+  	}
+
+
+  	avg(gameController.scores);
+  	console.log(avgScore); // 这时avgScores被avg函数中的同名变量overwrite
+  	console.log(gameController.avgScore);
+
+  	avgScore = "global avgScore";
+
+  	// 在call()方法中，第一个参数规定this的指向，之后的参数是往函数中传的数值
+  	avg.call(gameController, gameController.scores);
+  	console.log(avgScore); // global avgScore
+  	console.log(gameController.avgScore); // 46.4
+
+
+
+  	var clientData = {
+  		id: 094545,
+  		fullName: "Not Set",
+  		setUserName: function(firstName, lastName) {
+  			this.fullName = firstName + " " + lastName;
+  		}
+  	}
+
+  	function getUserInput(firstName, lastName, callback, callbackObj) {
+  		callback.apply(callbackObj, [firstName, lastName]);
+  	}
+
+  	getUserInput("Barack", "Obama", clientData.setUserName, clientData);
+  	console.log(clientData.fullName);
+
+
+    var anArrayLikeObj = {
+      0: "Martin",
+      1: 78,
+      2: 67,
+      3: ["Letta", "Marieta", "Pauline"],
+      length: 4
+    }
+
+    var newArray = Array.prototype.slice.call(anArrayLikeObj, 0);
+    console.log(newArray);
+
+    console.log(Array.prototype.indexOf.call(anArrayLikeObj, "Martin")
+      === -1 ? false : true);
+
+    console.log(Array.prototype.reverse.call(anArrayLikeObj)); // length属性并没有被反转
+
+    console.log(Array.prototype.push.call(anArrayLikeObj, "Jackie")); // 5
+
+
+    function transitionTo(name) {
+      // arguments是一个array-like object
+      var args = Array.prototype.slice.call(arguments, 1);
+
+      console.log(args);
+    }
+
+    transitionTo('Bowen', 'Zhong', 24);
+
+
+
+
+    // Use Apply () to Execute Variable-Arity Functions
+    console.log(Math.max(23, 11, 34, 56));
+
+    var allNumbers = [23, 11, 34, 56];
+    console.log(Math.max(allNumbers)); // NaN
+
+    console.log(Math.max.apply(null, allNumbers)); // 56
+
+
+    var students = ["Peter Alexander", "Michael Woodruff", "Judy Archer", "Malcolm Khan"];
+    
+    function welcomeStudents() {
+      var args = Array.prototype.slice.call(arguments);
+
+      var lastItem = args.pop();
+      console.log("Welcome " + args.join(",") + ",and " + lastItem + ".");
+    }
+
+    welcomeStudents.apply(null, students);
+
   </script>
 </body>
 
