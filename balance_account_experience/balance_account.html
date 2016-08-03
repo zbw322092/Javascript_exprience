@@ -31,9 +31,18 @@
   <!-- 使用padding没法实现bottom line往里面缩的效果，因为padding的部分是div的一部分 -->
   <div class="bottom-line2" ng-click="myAlert()"></div>
 
-  <!-- 另一种实现方法 -->
+  <!-- 另一种实现方法，问题是在表格式样的页面中，上下栏中间会有1px的空隙，所以此方法不建议使用 -->
   <div class="bottom-line3" ng-click="myAlert()"></div>
   <div class="line"></div>
+  <div class="bottom-line3 no-margin-top" ng-click="myAlert()"></div>
+
+  <!-- 对里面的文字采用负的margin-left使其左移 -->
+  <div class="bottom-line" ng-click="myAlert()">
+    <span class="title">It is a title</span>  
+  </div>
+
+
+  
 
 
   <script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>
