@@ -10,6 +10,21 @@
 
   <div class="colors-block" ng-click="changeThreeColors()" ng-style="myStyle">Click It</div>
 
+  <!-- 先显示子级的ng-click的效果，再显示父级的ng-click效果 -->
+  <div class="block" ng-click="myAlert()">
+    <div class="block2" ng-click="myAlert2()"></div>
+  </div>
+
+  <!-- 在这种情况下，点击之后class后面确实加上了blockBackground这个class，但是原有背景色并没有被overwrite -->
+  <!-- ng-class里面，采用Object形式的时候key可以加''也可以不加 -->
+  <!-- 其次，key里面不能包含- -->
+  <div class="block-extend" ng-class="{'blockBackground': setBackground}" ng-click="setBackground = true">
+  </div>
+
+  <!-- 在样式文件中加了!important解决了这个问题 -->
+  <div class="block-extend" ng-class="{'blockBackgroundImportant': setBackground}" ng-click="setBackground = true">
+  </div>  
+
 
 
   <script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>

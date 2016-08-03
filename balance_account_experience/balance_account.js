@@ -24,4 +24,14 @@ angular.module("balance_app", [])
 		})();
 
 
+		$scope.myAlert = function() {
+			window.alert("ok");
+		}
+
+		$scope.myAlert2 = function() {
+			window.alert("ok2");
+		}		
+
+
+
 	}]);
