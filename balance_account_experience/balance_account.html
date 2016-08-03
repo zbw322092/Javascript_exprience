@@ -22,9 +22,18 @@
   </div>
 
   <!-- 在样式文件中加了!important解决了这个问题 -->
-  <div class="block-extend" ng-class="{'blockBackgroundImportant': setBackground}" ng-click="setBackground = true">
+  <div class="block-extend" ng-class="{'blockBackgroundImportant': setBackground2}" ng-click="setBackground2 = true">
   </div>  
 
+  <!-- 这是一种bottom line的实现方法，缺点是margin-left margin-right的部分点击没效果 -->
+  <div class="bottom-line" ng-click="myAlert()"></div>
+
+  <!-- 使用padding没法实现bottom line往里面缩的效果，因为padding的部分是div的一部分 -->
+  <div class="bottom-line2" ng-click="myAlert()"></div>
+
+  <!-- 另一种实现方法 -->
+  <div class="bottom-line3" ng-click="myAlert()"></div>
+  <div class="line"></div>
 
 
   <script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>

@@ -32,3 +32,38 @@
 .blockBackgroundImportant {
 	background-color: grey !important;	
 }
+
+
+.bottom-line {
+	height: 100px;
+	border-bottom: 1px solid black;
+	margin: 20px 50px 0 50px;
+}
+
+.bottom-line2 {
+	height: 100px;
+	border-bottom: 1px solid black;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.bottom-line3 {
+	height: 100px;
+	background-color: orange;
+	margin-top: 20px;
+}
+
+.line {
+	border-bottom: 1px solid black;
+	margin: 0 40px 0 40px;
+}
+
+
+
+
+
+
+
+
+
+
