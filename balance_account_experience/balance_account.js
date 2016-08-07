@@ -33,5 +33,33 @@ angular.module("balance_app", [])
 		}		
 
 
+		console.log(document);
+		console.log(document.getElementsByTagName('input'));
+		console.log(typeof document.getElementsByTagName('input')); // object
+
+		console.log(document.getElementsByTagName('div'));
+		console.log(document.getElementsByTagName('div').length);
+		console.log(document.getElementsByTagName('div')[1]);
+
+		var elementsArray = document.getElementsByTagName('div');
+		console.log(elementsArray);
+
+		console.log(document.getElementsByTagName('div')[1]);
+		console.log(document.getElementsByTagName('div')[1].getAttribute('class'));
+		console.log(document.getElementsByTagName('div')[1].getAttribute('ng-click')); // myAlert()
+		
+		
 
 	}]);
+
+
+
+
+
+
+
+
+
+
+
+
