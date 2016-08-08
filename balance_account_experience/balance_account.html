@@ -8,54 +8,53 @@
 
 <body ng-controller="Balance">
 
-  <div class="colors-block" ng-click="changeThreeColors()" ng-style="myStyle">Click It</div>
+  <input type="checkbox" ng-model="checked" ng-init="checked=true"></input>
+  <div class="loading-container" ng-show="checked" ng-class="{'loading-container-fadeOut': !checked}">
+    <div class="loading"></div>
+    <div id="loading-text">loading...</div>
+  </div>
 
+  <div class="success-container" ng-show="!checked">
+    <div class="success"></div>
+    <div id="success-text"></div>
+  </div>
+
+
+
+  <div class="colors-block" ng-click="changeThreeColors()" ng-style="myStyle">Click It</div>
   <!-- 先显示子级的ng-click的效果，再显示父级的ng-click效果 -->
   <div class="block" ng-click="myAlert()">
     <div class="block2" ng-click="myAlert2()"></div>
   </div>
-
   <!-- 在这种情况下，点击之后class后面确实加上了blockBackground这个class，但是原有背景色并没有被overwrite -->
   <!-- ng-class里面，采用Object形式的时候key可以加''也可以不加 -->
   <!-- 其次，key里面不能包含- -->
   <div class="block-extend" ng-class="{'blockBackground': setBackground}" ng-click="setBackground = true">
   </div>
-
   <!-- 在样式文件中加了!important解决了这个问题 -->
   <div class="block-extend" ng-class="{'blockBackgroundImportant': setBackground2}" ng-click="setBackground2 = true">
-  </div>  
-
+  </div>
   <!-- 这是一种bottom line的实现方法，缺点是margin-left margin-right的部分点击没效果 -->
   <div class="bottom-line" ng-click="myAlert()"></div>
-
   <!-- 使用padding没法实现bottom line往里面缩的效果，因为padding的部分是div的一部分 -->
   <div class="bottom-line2" ng-click="myAlert()"></div>
-
   <!-- 另一种实现方法，问题是在表格式样的页面中，上下栏中间会有1px的空隙，所以此方法不建议使用 -->
   <div class="bottom-line3" ng-click="myAlert()"></div>
   <div class="line"></div>
   <div class="bottom-line3 no-margin-top" ng-click="myAlert()"></div>
-
   <!-- 对里面的文字采用负的margin-left使其左移 -->
   <div class="bottom-line" ng-click="myAlert()">
-    <span class="title">It is a title</span>  
+    <span class="title">It is a title</span>
   </div>
-
-
-
   <div class="column">
-    
   </div>
-
- <!--  <div class="column">
+  <!--  <div class="column">
     <div class="title">title</div>
     <div class="description">It is a description</div>
     <div class="right-arrow"></div>
     
   </div> -->
 
-  
-  
 
 
   <script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>
@@ -65,3 +64,18 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

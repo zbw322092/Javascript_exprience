@@ -1,5 +1,5 @@
 angular.module("balance_app", [])
-	.controller('Balance', ['$scope', function($scope){
+	.controller('Balance', ['$scope', '$timeout', function($scope, $timeout){
 		
 		(function () {
 			var status = 1;
@@ -48,6 +48,15 @@ angular.module("balance_app", [])
 		console.log(document.getElementsByTagName('div')[1].getAttribute('class'));
 		console.log(document.getElementsByTagName('div')[1].getAttribute('ng-click')); // myAlert()
 		
+
+		// $timeout(function() {
+		// 	window.alert('it is time');
+		// 	$timeout(function() {
+		// 		window.alert('it is inner time');
+		// 	}, 2000);
+		// }, 2000);
+		
+
 		
 
 	}]);
