@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript Objects in Detail</title>
+</head>
+
+<body>
+  <script>
+  var person = new Object();
+  person.name = "Bowen";
+  person.age = 24;
+  person.height = 183;
+  person.action = function() {
+    console.log('write JS');
+  }
+
+  console.log(person);
+  person.action();
+
+
+  var anotherPerson = {
+    name: "Bowen",
+    age: 24,
+    height: 183,
+    action: function() {
+      console.log('write JS');
+    }
+  }
+
+  console.log(anotherPerson);
+
+  console.log(person == anotherPerson); // false
+  console.log(person === anotherPerson); // false
+
+  console.log(person.name === anotherPerson.name); // true
+  console.log(person.action === anotherPerson.action); // false
+
+
+  var anotherPerson2 = {
+    name: "Bowen",
+    age: 24,
+    height: 183,
+    itis: function() {
+      console.log(this);
+    }
+  }
+  anotherPerson2.itis();
+
+  var booleanValue = anotherPerson2.itis() == anotherPerson2;
+  console.log(booleanValue); // false
+
+
+
+  // constructor pattern for creating objects
+  function Fruit(theColor, theSweetness, theFruitName, theNativeToLand) {
+    this.color = theColor;
+    this.sweetness = theSweetness;
+    this.fruitName = theFruitName;
+    this.nativeToLand = theNativeToLand;
+
+    this.showName = function() {
+      console.log("This is a " + this.fruitName);
+    }
+
+    this.nativeTo = function() {
+      this.nativeToLand.forEach(function(eachCounty) {
+        console.log("Grown in: " + eachCounty);
+      });
+    }
+  }
+
+  console.log(Fruit);
+
+  var mangoFruit = new Fruit("Yellow", 8, "Mango", ["South America", "West Africa"]);
+  console.log(mangoFruit);
+  console.log(mangoFruit.sweetness);
+  mangoFruit.showName();
+  mangoFruit.nativeTo();
+
+  var pineappleFruit = new Fruit("Brown", 5, "Pineapple", ["United State"]);
+  pineappleFruit.showName();
+
+  console.log(pineappleFruit.hasOwnProperty('color')); // true
+
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
