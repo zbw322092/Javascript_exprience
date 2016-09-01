@@ -163,6 +163,24 @@
   }
 
 
+  // delete properties of an object
+  var christmasList = {
+    mike:"Book", 
+    jason:"sweater" 
+  }
+
+  delete christmasList.mike;
+
+  console.log(delete christmasList.mike); // 删除成功返回true
+  console.log(christmasList);
+
+  console.log(delete christmasList.toString); // 虽然没有删除成功但是依然返回true
+  console.log(christmasList.toString);
+
+  // 继承来的属性没办法用delete方法删除，但是然后会返回true
+  
+
+  
   </script>
 </body>
 
