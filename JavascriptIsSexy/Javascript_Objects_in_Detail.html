@@ -180,7 +180,22 @@
   // 继承来的属性没办法用delete方法删除，但是然后会返回true
   
 
-  
+  // serialize and deserialize objects
+  var christmasList2 = {
+    mike:"Book", 
+    jason:"sweater", 
+    chelsea:"iPad" 
+  }
+
+  console.log(christmasList2);
+
+  var stringChristmasList2 = JSON.stringify(christmasList2);
+  console.log(stringChristmasList2);
+  console.log(typeof stringChristmasList2); // string
+
+  var objectChristmasList2 = JSON.parse(stringChristmasList2);
+  console.log(objectChristmasList2);
+  console.log(typeof objectChristmasList2); // object
   </script>
 </body>
 
