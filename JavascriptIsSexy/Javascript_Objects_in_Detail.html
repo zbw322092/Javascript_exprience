@@ -82,6 +82,34 @@
   pineappleFruit.showName();
 
   console.log(pineappleFruit.hasOwnProperty('color')); // true
+  console.log(pineappleFruit.constructor);
+
+  // prototype patterns for creating objects
+  function Fruit2() {
+
+  }
+  Fruit2.prototype.color = "Yellow";
+  Fruit2.prototype.sweetness = 9;
+  Fruit2.prototype.fruitName = "peach";
+  Fruit2.prototype.nativeToLand = "China";
+  Fruit2.prototype.showName = function() {
+    console.log("This is: " + this.fruitName);
+  }
+  Fruit2.prototype.nativeTo = function() {
+    console.log("Growth in: " + this.nativeToLand);
+  }
+
+  console.log(Fruit2);
+  console.log(Fruit2.prototype);
+
+  var peach = new Fruit2();
+  console.log(peach);
+  peach.showName();
+  peach.nativeTo();
+
+  console.log(peach.hasOwnProperty('color')); // false
+  console.log(peach.constructor);
+
 
   </script>
 </body>
