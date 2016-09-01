@@ -111,6 +111,58 @@
   console.log(peach.constructor);
 
 
+  // own and inherited properties
+  var school = {
+    schoolName: "MIT"
+  }
+
+  console.log('schoolName' in school); // true
+  console.log('schoolType' in school); // false
+  console.log('toString' in school); // true
+
+  console.log(Object.prototype);
+
+  console.log(school.hasOwnProperty('schoolName')); // true
+  console.log(school.hasOwnProperty('toString')); // false
+
+  school.schoolAccredited = true;
+  school.schoolLocation = 'Massachusetts';
+  console.log(school);
+
+  for(eachProperty in school) {
+    console.log(eachProperty);
+  }
+
+
+  function HigherLearning() {
+    this.educationLevel = "University";
+  }
+
+  HigherLearning();
+
+  var school2 = new HigherLearning();
+  console.log(school2);
+  console.log(typeof school2); // object
+  console.log(school2.educationLevel); // university
+
+  school2.schoolName = "MIT";
+  school2.schoolAccredited = true;
+  school2.schoolLocation = "Massachusetts";
+
+  console.log(school2);
+  console.log(school2.constructor);
+  console.log(typeof school2.constructor); // function
+
+  console.log(school2.__proto__);
+  console.log(typeof school2.__proto__); // object
+
+  console.log(school2.__proto__.__proto__);
+
+  for(eachProperty in school2) {
+    console.log(eachProperty);
+  }
+
+
   </script>
 </body>
 
