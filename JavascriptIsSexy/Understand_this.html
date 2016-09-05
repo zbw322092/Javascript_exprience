@@ -106,6 +106,13 @@
     man2(); // Bowen is 24 years old
 
     
+    // 注意以下结果返回的是正常的，也就说没有取全局里面的data object。这个说明了一个关键问题，就是this所指的值（一个object）,只有当这个this所在的function被invoked的时候才被赋予，下面例子中man3被赋值的printText这个method已经被invoked了，所以取的是object里面的data，而上面的例子中，man被赋值之后，在全局中才invoke method,所以取的是全局的data。
+    var man3 = user3.printText(); // Bowen is 24 years old
+
+
+    // Fix this when borrowing methods
+
+    
     
   </script>
 </body>
