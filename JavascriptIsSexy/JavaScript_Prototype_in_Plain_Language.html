@@ -85,6 +85,20 @@
     console.log(aBanana.name);
     aBanana.showNameAndColor();
 
+
+    // Prototype Attribute: Accessing Properties on Objects
+    function People() {
+      this.superstar = "MJ";
+    }
+    People.prototype.athlete = "Tiger Woods";
+
+    var famousPerson = new People();
+
+    famousPerson.superstar = "Steve Jobs";
+    console.log(famousPerson.superstar);
+    console.log(famousPerson.athlete);
+    console.log(famousPerson.toString()); // [object Object]
+
   </script>
 </body>
 
