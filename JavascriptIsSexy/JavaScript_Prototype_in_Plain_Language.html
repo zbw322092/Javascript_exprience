@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript Prototype in Plain Language</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      name: 'Bowen Zhong'
+    };
+
+    console.log(obj.prototype); // undefined
+    console.log(obj.__proto__); // Object{...}
+
+
+    function PrintStuff(myDocuments) {
+      this.documents = myDocuments;
+    }
+    console.log(PrintStuff.prototype); // Object{...}
+    console.log(PrintStuff.documents); // undefined
+
+    PrintStuff("this test");
+    console.log(window.documents); // this test
+
+    var obj1 = new PrintStuff("It is a document");
+    console.log(obj1);
+    console.log(obj1.documents); // it is a document
+    console.log(obj1.prototype); // undefined
+    console.log(obj1.constructor); // 返回其构造函数
+
+    PrintStuff.prototype.print = function() {
+      console.log(this.documents);
+    }
+
+    console.log(obj1); // 动态的继承了print方法
+    console.log(obj1.print);
+
+    obj1.print();
+    console.log(obj1.__proto__);
+    console.log(obj1.__proto__.print);
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
