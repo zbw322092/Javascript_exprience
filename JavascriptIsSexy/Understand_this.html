@@ -76,7 +76,36 @@
       }
     }
 
-    user2.clickHandler();    
+    user2.clickHandler();
+
+
+
+    // Fix this when method is assigned to a variable
+    var data = {
+      firstName: "kid",
+      age: 6
+    };
+
+    var user3 = {
+      data: {
+        firstName: "Bowen",
+        age: 24
+      },
+      printText: function() {
+        console.log(this.data.firstName + ' is ' + this.data.age + ' years old');
+      }
+    };
+
+    user3.printText(); // Bowen is 24 years old
+
+    var man = user3.printText;
+    man(); // kid is 6 years old
+
+    // 解决方案也是使用bind()方法
+    var man2 = user3.printText.bind(user3);
+    man2(); // Bowen is 24 years old
+
+    
     
   </script>
 </body>
