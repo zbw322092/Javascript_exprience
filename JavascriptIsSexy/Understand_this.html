@@ -6,6 +6,7 @@
 </head>
 
 <body>
+  <button id="buttonOne" on-click="clickIt()"></button>
   <script>
     var person = {
       firstName: 'Bowen',
@@ -33,6 +34,50 @@
     };
 
     person.fullName.apply(anotherPerson);
+
+
+
+    // Fix this when used in a method passed as a callback
+    // 通过bind(), apply(), call()等方法来指定this的context
+
+
+    // Fix this inside closure
+    // It is important to take note that closures cannot access the outer function’s this variable by using the this keyword because the this variable is accessible only by the function itself, not by inner functions.
+    // this inside the anonymous function cannot access the outer function’s this, so it is bound to the global window object
+    var user = {
+      tournament: "The Masters",
+      data: [
+        {name: 'T.Woods', age: 37},
+        {name: 'MJ', age: 43}
+      ],
+      clickHandler: function() {
+        this.data.forEach(function(person) {
+          console.log("What is This referring to? " + this);
+          console.log(person.name + " is playing at " + this.tournament);
+        });
+      }
+    }
+
+    user.clickHandler();
+
+    // solution to maintain this inside anonymous functions
+    var user2 = {
+      tournament: "The Masters",
+      data: [
+        {name: 'T.Woods', age: 37},
+        {name: 'MJ', age: 43}
+      ],
+      clickHandler: function() {
+        var theUserObj = this;
+        this.data.forEach(function(person) {
+          // console.log("What is This referring to? " + this);
+          console.log(person.name + " is playing at " + theUserObj.tournament);
+        });
+      }
+    }
+
+    user2.clickHandler();    
+    
   </script>
 </body>
 
