@@ -43,8 +43,47 @@
 
 
 
+    console.log(Object);
+    console.log(Object());
+    console.log(Object.prototype);
+
+    var obj2 = {
+      name: 'Hui'
+    }
+    console.log(obj2.prototype);
+    console.log(obj2.__proto__);
+
+    var obj3 = new Object();
+    console.log(obj3.prototype);
+    console.log(obj3.__proto__);
 
 
+    // Prototype Property: Prototype-based Inheritance
+    function Plant(){
+      this.country = 'Mexico';
+      this.isOrganic = true;
+    }
+
+    Plant.prototype.showNameAndColor = function() {
+      console.log("I am a " + this.name + " and my color is " + this.color);
+    }
+
+    Plant.prototype.amIOrganic = function() {
+      if(this.isOrganic)
+        console.log("I am organic, Baby!");
+    }
+
+    function Fruit(fruitName, fruitColor) {
+      this.name = fruitName;
+      this.color = fruitColor;
+    }
+
+    Fruit.prototype = new Plant();
+
+    var aBanana = new Fruit("Banana", "Yellow");
+
+    console.log(aBanana.name);
+    aBanana.showNameAndColor();
 
   </script>
 </body>
