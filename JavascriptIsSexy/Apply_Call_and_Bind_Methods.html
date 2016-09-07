@@ -89,7 +89,45 @@
 
 
     // Borrowing Functions with Apply and Call
-    
+    var anArrayLikeObj = {
+      0: "Martin",
+      1: 78,
+      2: 67,
+      3: [
+        "Letta",
+        "Marieta",
+        "Pauline"
+      ],
+      length: 4
+    };
+
+    var normalObj = {
+      name: 'Bowen'
+    }
+
+    var newArray = Array.prototype.slice.call(anArrayLikeObj, 0);
+
+    console.log(newArray);
+
+    console.log(Array.prototype.indexOf.call(anArrayLikeObj, "Martin") === -1 ? false : true);
+
+    Array.prototype.push.call(anArrayLikeObj, "Jackie");
+    console.log(anArrayLikeObj);
+    console.log(typeof anArrayLikeObj);
+
+    Array.prototype.push.call(normalObj, "Jackie");
+    console.log(normalObj); // Object {0: "Jackie", name: "Bowen", length: 1}
+
+
+
+    function transitionTo(name) {
+      var args = Array.prototype.slice.call(arguments, 1);
+
+      console.log(args);
+    }
+
+    transitionTo(24, 'Bowen', 'Zhong', 183); // ["Bowen", "Zhong", 183]
+
   </script>
 </body>
 
